@@ -4,7 +4,9 @@
 
 #include "NQueenBacktrack.h"
 
-NQueenBacktrack::NQueenBacktrack() {}
+NQueenBacktrack::NQueenBacktrack(Board* board) {
+    NQueenBacktrack::The_Board = board;
+}
 
 bool NQueenBacktrack::solve() {
     int board[N][N] = {0};
@@ -22,9 +24,16 @@ bool NQueenBacktrack::solveNQUtil(int (*board)[N], int col) {
     for (int i = 0; i < N; ++i) {
         if (isSafe(board, i, col)){
             board[i][col] = 1;
+            NQueenBacktrack::The_Board->update_state(i*10+col, NQueenBacktrack::green);
+
+            al_flip_display();
+
             if(solveNQUtil(board, col+1))
                 return true;
             board[i][col] = 0;
+
+            al_flip_display();
+
         }
     }
     return false;

@@ -5,19 +5,21 @@
 #ifndef INC_8_QUEENS_TRACK_NQUEENBACKTRACK_H
 #define INC_8_QUEENS_TRACK_NQUEENBACKTRACK_H
 
-#define N 8
 
-#include <iostream>
-
-using namespace std;
+#include "Definer.h"
+#include "Board.h"
 
 class NQueenBacktrack {
 public:
-    NQueenBacktrack();
+    NQueenBacktrack(Board* board);
     bool solve();
     bool solveNQUtil(int board[N][N], int col);
     void printSolution(int board[N][N]);
     bool isSafe(int board[N][N], int row, int col);
+
+private:
+    Board* The_Board;
+    int green[3] = {0,255,0};
 };
 
 
