@@ -8,19 +8,23 @@
 
 #include "Definer.h"
 #include "Board.h"
+#include "tinyxml2.h"
 
+using namespace std;
 class NQueenBacktrack {
 public:
-    NQueenBacktrack(Board* board);
+    NQueenBacktrack();
+    XMLDocument xmlDoc;
+    XMLNode * pRoot = xmlDoc.NewElement("QueenRoot");
     bool solve();
     bool solveNQUtil(int board[N][N], int col);
     void printSolution(int board[N][N]);
     bool isSafe(int board[N][N], int row, int col);
 
 private:
-    Board* The_Board;
-    int green[3] = {0,255,0};
+    XMLDocument posiciones;
 };
 
 
 #endif //INC_8_QUEENS_TRACK_NQUEENBACKTRACK_H
+

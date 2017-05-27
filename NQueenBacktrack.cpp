@@ -4,8 +4,8 @@
 
 #include "NQueenBacktrack.h"
 
-NQueenBacktrack::NQueenBacktrack(Board* board) {
-    NQueenBacktrack::The_Board = board;
+NQueenBacktrack::NQueenBacktrack() {
+    //NQueenBacktrack::The_Board = board;
 }
 
 bool NQueenBacktrack::solve() {
@@ -19,20 +19,19 @@ bool NQueenBacktrack::solve() {
 }
 
 bool NQueenBacktrack::solveNQUtil(int (*board)[N], int col) {
+
     if (col >= N)
         return col >= N;
     for (int i = 0; i < N; ++i) {
+
         if (isSafe(board, i, col)){
             board[i][col] = 1;
-            NQueenBacktrack::The_Board->update_state(i*10+col, NQueenBacktrack::green);
+            //NQueenBacktrack::The_Board->update_state(i*10+col, NQueenBacktrack::green);
 
-            al_flip_display();
-
-            if(solveNQUtil(board, col+1))
+            if(solveNQUtil(board, col+1)){
                 return true;
+            }
             board[i][col] = 0;
-
-            al_flip_display();
 
         }
     }
@@ -40,6 +39,9 @@ bool NQueenBacktrack::solveNQUtil(int (*board)[N], int col) {
 }
 
 bool NQueenBacktrack::isSafe(int (*board)[N], int row, int col) {
+//    XMLElement * pElement = xmlDoc.NewElement("PosList");
+//    string pos;
+//    xmlDoc.InsertFirstChild(pRoot);
     int i, j;
     for(i = 0; i < col; i++){
         if (board[row][i])
@@ -53,6 +55,10 @@ bool NQueenBacktrack::isSafe(int (*board)[N], int row, int col) {
         if (board[i][j])
             return false;
     }
+
+//    pElement->SetAttribute("posF", i);
+//    pElement->SetAttribute("posC", col);
+//    pRoot->InsertEndChild(pElement);
     return true;
 }
 
@@ -60,8 +66,17 @@ void NQueenBacktrack::printSolution(int (*board)[N]) {
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < N; ++j) {
             cout << board[i][j] << " ";
+            if (board[i][j]){
+                XMLElement * pElement = xmlDoc.NewElement("PosList");
+                pElement->SetAttribute("posF", i);
+                pElement->SetAttribute("posC", j);
+                pRoot->InsertEndChild(pElement);
+
+                xmlDoc.InsertFirstChild(pRoot);
+            }
         }
         cout << endl;
     }
     cout << "\n" << endl;
+    xmlDoc.SaveFile("/home/nicko/8Queen.xml");
 }

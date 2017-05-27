@@ -12,7 +12,9 @@
 #define ScreenHeight N*Height
 
 #include <iostream>
+#include "tinyxml2.h"
 
+using namespace tinyxml2;
 using namespace std;
 
 #endif //INC_8_QUEENS_TRACK_DEFINER_H

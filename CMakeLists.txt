@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 include_directories(/usr/include/allegro5)
 link_directories(/usr/include/allegro5)
 
-set(SOURCE_FILES main.cpp NQueenBacktrack.cpp NQueenBacktrack.h Board.cpp Board.h boxes.cpp boxes.h Definer.h)
+set(SOURCE_FILES main.cpp tinyxml2.cpp tinyxml2.h NQueenBacktrack.cpp NQueenBacktrack.h Board.cpp Board.h boxes.cpp boxes.h Definer.h)
 add_executable(8_Queens_Track ${SOURCE_FILES})
 
 target_link_libraries(8_Queens_Track  liballegro.so liballegro_image.so liballegro_audio.so liballegro_acodec.so
